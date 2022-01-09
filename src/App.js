@@ -9,6 +9,7 @@ class App extends Component {
                 <div style={{ background: "grey" }}>
                     <Navbar />
                     <Posts />
+                    <br />
                 </div>
             </>
         );

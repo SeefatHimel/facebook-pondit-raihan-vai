@@ -1,7 +1,34 @@
 import React, { Component } from "react";
 import Like from "./like.component";
-
+let commentValue = "";
 class Post extends Component {
+    state = {
+        comments: [],
+    };
+
+    testFunction = () => {
+        console.log("hello");
+    };
+    onChange(eve) {
+        commentValue = eve.target.value;
+        //console.log(commentValue);
+    }
+
+    _handleKeyDown = (e) => {
+        if (e.key === "Enter") {
+            console.log("do validate");
+
+            if (commentValue.length > 1) {
+                const comments = [...this.state.comments];
+                comments.push(commentValue);
+                e.target.value = "";
+                console.log(e.target.value);
+
+                this.setState({ comments });
+            }
+        }
+    };
+
     render() {
         const { title, date, content, cComment, like } = this.props;
 
@@ -13,15 +40,34 @@ class Post extends Component {
                         width: "28rem",
                         margin: "10px auto",
                         padding: "10px",
-                        background: "#b3ffff", 
+                        background: "#b3ffff",
                         borderRadius: "15px",
-                        border : "2px solid "
+                        border: "2px solid ",
                     }}
                 >
-                    <div className="card-body" >
+                    <div className="card-body">
                         <h5 className="card-title">{title}</h5>
                         <p className="card-text">{date}</p>
                         <p className="card-text">{content}</p>
+
+                        {this.state.comments.map((comment, index) => {
+                            return (
+                                <div
+                                    key={index}
+                                    style={{
+                                        width: "90%",
+                                        padding: "5px",
+                                        margin: "5px",
+                                        background: "##ccffff",
+                                        border: "2px solid ",
+                                        borderRadius: "15px",
+                                    }}
+                                >
+                                    <p className="card-text">Himel : {comment}</p>
+                                </div>
+                            );
+                        })}
+
                         <div className="row" style={{ padding: "5px" }}>
                             <input
                                 style={{
@@ -33,6 +79,8 @@ class Post extends Component {
                                 className="col-sm-9"
                                 type="text"
                                 placeholder="Write a comment..."
+                                onChange={this.onChange}
+                                onKeyDown={this._handleKeyDown}
                                 // defaultValue={cComment}
                             />
                             <div

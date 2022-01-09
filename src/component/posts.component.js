@@ -43,7 +43,8 @@ class Posts extends Component {
                 id: 5,
                 title: "Prothom Alo",
                 date: "2 Jan 2021 | 1:10 AM",
-                content: "মুসলিমদের বিরুদ্ধে গণহত্যার ডাক দেওয়ায় উদ্বেগ প্রকাশ করে দেশটির রাষ্ট্রপতি ও প্রধানমন্ত্রীকে চিঠি লিখলেন দেশের পাঁচ সাবেক প্রতিরক্ষাপ্রধান।",
+                content:
+                    "মুসলিমদের বিরুদ্ধে গণহত্যার ডাক দেওয়ায় উদ্বেগ প্রকাশ করে দেশটির রাষ্ট্রপতি ও প্রধানমন্ত্রীকে চিঠি লিখলেন দেশের পাঁচ সাবেক প্রতিরক্ষাপ্রধান।",
                 comment: "sample comment 5",
                 like: 1,
             },
@@ -53,7 +54,7 @@ class Posts extends Component {
     render() {
         return (
             <>
-                <div style={{ margin: "auto",}}>
+                <div style={{ margin: "auto" }}>
                     {this.state.sPosts.map((posts) => {
                         return (
                             <React.Fragment key={posts.id}>
