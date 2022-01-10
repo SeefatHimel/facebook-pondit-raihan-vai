@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 
 class Navbar extends Component {
+    state ={
+        like : this.props.like,
+        dislike : this.props.dislike,
+    }
     render() {
         return (
             <>
@@ -19,7 +23,6 @@ class Navbar extends Component {
                             fontSize: "55px",
                             color: "blue",
                             flex: "0 0",
-                            padding: "0",
                             background: "white",
                             padding : "0px",
                             margin : "auto",
@@ -42,6 +45,12 @@ class Navbar extends Component {
                     >
                         Facebook
                     </h1>
+                    <div className="col row"
+                    style={{mrginLeft : "20px"}}>
+                        <h1 className="col" >Like {this.props.like}</h1>
+                    <h1 className="col">Dislike {this.props.disLike}</h1>
+                    </div>
+                    
                 </div>
             </>
         );

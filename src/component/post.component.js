@@ -29,8 +29,13 @@ class Post extends Component {
         }
     };
 
+    handleRemoveButton = () => {
+        this.props.handleRemove(this.props.id);
+        this.setState();
+    };
+
     render() {
-        const { title, date, content, cComment, like } = this.props;
+        const { title, date, content } = this.props;
 
         return (
             <>
@@ -48,6 +53,11 @@ class Post extends Component {
                     <div className="card-body">
                         <h5 className="card-title">{title}</h5>
                         <p className="card-text">{date}</p>
+                        {/* <img
+                            src="https://cdn.joypixels.com/emoji/emojione/2.0/1f642.svg"
+                            alt="no image"
+                        /> */}
+                        <p className="card-text">Description</p>
                         <p className="card-text">{content}</p>
 
                         {this.state.comments.map((comment, index) => {
@@ -63,7 +73,9 @@ class Post extends Component {
                                         borderRadius: "15px",
                                     }}
                                 >
-                                    <p className="card-text">Himel : {comment}</p>
+                                    <p className="card-text">
+                                        Himel : {comment}
+                                    </p>
                                 </div>
                             );
                         })}
@@ -71,7 +83,7 @@ class Post extends Component {
                         <div className="row" style={{ padding: "5px" }}>
                             <input
                                 style={{
-                                    width: "90%",
+                                    width: "70%",
                                     padding: "5px",
                                     background: "##ccffff",
                                     borderRadius: "15px",
@@ -84,16 +96,33 @@ class Post extends Component {
                                 // defaultValue={cComment}
                             />
                             <div
-                                className="col-sm-1"
+                                className="col"
                                 style={{
                                     margin: "auto",
                                     padding: "5px",
                                     fontSize: "25px",
                                 }}
                             >
-                                <Like like={like} />
+                                <Like
+                                    id={this.props.id}
+
+                                    like={this.props.like}
+                                    dislike={this.props.dislike}
+                                    handleDisLike={this.props.handleDisLike}
+                                    handleLike={this.props.handleLike}
+                                    changeLike = {this.props.changeLike}
+                                    changeDisLike = {this.props.changeDisLike}
+
+                                />
                             </div>
                         </div>
+                        <button
+                            className="btn btn-danger"
+                            onClick={this.handleRemoveButton}
+                            style={{ width: "100%" }}
+                        >
+                            Remove
+                        </button>
                     </div>
                 </div>
             </>

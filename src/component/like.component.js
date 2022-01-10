@@ -13,27 +13,64 @@ const liked = {
     border: "none",
     fontSize: "40px",
 };
-let styleText = notLiked;
 
 class Like extends Component {
     state = {
-        Like: 1,
+        Like: this.props.like,
+        DisLike: this.props.dislike,
+        firstTime: true,
+        styleText: notLiked,
+        styleText2: notLiked,
     };
     handleLikeButtonChange = () => {
-        const templike = this.state.Like;
-        const newLike = templike * -1;
-        newLike === 1 ? (styleText = notLiked) : (styleText = liked);
-        this.setState({ Like: newLike });
+        let templike = this.state.Like;
+        console.log(templike, this.props.like);
+        templike === true
+            ? this.setState({ styleText: notLiked })
+            : this.setState({ styleText: liked });
+        templike = !templike;
+        this.changeLike(this.props.id, templike);
+
+        this.setState({ Like: templike });
     };
+
+    handleDisLikeButtonChange = () => {
+        let tempDisLike = this.state.DisLike;
+        tempDisLike === true
+            ? this.setState({ styleText2: notLiked })
+            : this.setState({ styleText2: liked });
+
+        tempDisLike = !tempDisLike;
+        this.changeDisLike(this.props.id, tempDisLike);
+
+        this.setState({ DisLike: tempDisLike });
+    };
+
+    handleDisLike = this.props.handleDisLike;
+    handleLike = this.props.handleLike;
+    changeLike = this.props.changeLike;
+    changeDisLike = this.props.changeDisLike;
 
     render() {
         return (
             <>
-                <button
-                    className={button1}
-                    style={styleText}
-                    onClick={this.handleLikeButtonChange}
-                ></button>
+                <div className="row">
+                    <div className="col">
+                        <button
+                            className={button1}
+                            style={this.state.styleText}
+                            onClick={this.handleLikeButtonChange}
+                        ></button>
+                    </div>
+                    <div className="col">
+                        <button
+                            style={this.state.styleText2}
+                            onClick={this.handleDisLikeButtonChange}
+                        >
+                            <i className="fa fa-thumbs-down"></i>
+                        </button>
+                    </div>
+                </div>
             </>
         );
     }
