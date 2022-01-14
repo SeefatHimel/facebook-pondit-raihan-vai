@@ -30,7 +30,9 @@ class Like extends Component {
             : this.setState({ styleText: liked });
         templike = !templike;
         this.changeLike(this.props.id, templike);
-
+        if (templike === true && this.state.DisLike === true) {
+            this.handleDisLikeButtonChange();
+        }
         this.setState({ Like: templike });
     };
 
@@ -39,9 +41,11 @@ class Like extends Component {
         tempDisLike === true
             ? this.setState({ styleText2: notLiked })
             : this.setState({ styleText2: liked });
-
         tempDisLike = !tempDisLike;
         this.changeDisLike(this.props.id, tempDisLike);
+        if (tempDisLike === true && this.state.Like === true) {
+            this.handleLikeButtonChange();
+        }
 
         this.setState({ DisLike: tempDisLike });
     };
@@ -54,15 +58,15 @@ class Like extends Component {
     render() {
         return (
             <>
-                <div className="row">
-                    <div className="col">
+                <div className="d-flex flex-row">
+                    <div className="p-2">
                         <button
                             className={button1}
                             style={this.state.styleText}
                             onClick={this.handleLikeButtonChange}
                         ></button>
                     </div>
-                    <div className="col">
+                    <div className="">
                         <button
                             style={this.state.styleText2}
                             onClick={this.handleDisLikeButtonChange}

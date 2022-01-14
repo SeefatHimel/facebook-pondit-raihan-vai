@@ -53,10 +53,10 @@ class Post extends Component {
                     <div className="card-body">
                         <h5 className="card-title">{title}</h5>
                         <p className="card-text">{date}</p>
-                        {/* <img
+                        <img
                             src="https://cdn.joypixels.com/emoji/emojione/2.0/1f642.svg"
                             alt="no image"
-                        /> */}
+                        />
                         <p className="card-text">Description</p>
                         <p className="card-text">{content}</p>
 
@@ -80,7 +80,7 @@ class Post extends Component {
                             );
                         })}
 
-                        <div className="row" style={{ padding: "5px" }}>
+                        <div className="d-flex flex-row" style={{ padding: "5px" }}>
                             <input
                                 style={{
                                     width: "70%",
@@ -88,7 +88,7 @@ class Post extends Component {
                                     background: "##ccffff",
                                     borderRadius: "15px",
                                 }}
-                                className="col-sm-9"
+                                className="p-2"
                                 type="text"
                                 placeholder="Write a comment..."
                                 onChange={this.onChange}
@@ -96,7 +96,7 @@ class Post extends Component {
                                 // defaultValue={cComment}
                             />
                             <div
-                                className="col"
+                                className="p-2"
                                 style={{
                                     margin: "auto",
                                     padding: "5px",

@@ -1,6 +1,14 @@
 import React, { Component } from "react";
 import Post from "./post.component";
+let nId = 6;
 
+const stylep = {
+    width: "100%",
+    padding: "5px",
+    margin: "5px",
+    background: "##ccffff",
+    borderRadius: "15px",
+};
 class Posts extends Component {
     state = {
         sPosts: [
@@ -54,6 +62,7 @@ class Posts extends Component {
                 dislike: false,
             },
         ],
+        idNo: 6,
         likeN: 0,
     };
     changeLike = (id, value) => {
@@ -76,6 +85,20 @@ class Posts extends Component {
 
     handleAddNew = () => {
         console.log("Post Added");
+        const sPosts = [...this.state.sPosts];
+        nId ++;
+        console.log(nId , npost);
+        let nnpost = npost;
+        npost.id = nId;
+        sPosts.push(nnpost);
+        //console.log(sPosts);
+
+        // nId = this.state.idNo;
+        // const idNo = this.state.idNo + 1;
+        // this.setState({ idNo });
+
+
+        this.setState({ sPosts });
     };
 
     sendLike = (temp) => {
@@ -96,7 +119,6 @@ class Posts extends Component {
         this.state.sPosts.map((post) =>
             post.id === id ? ((like = post.like), (dislike = post.dislike)) : ""
         );
-
         if (like === true) {
             this.props.handleLike(0);
         }
@@ -111,17 +133,39 @@ class Posts extends Component {
             <>
                 <div style={{ margin: "auto" }}>
                     <button
-                    type="button"
+                        type="button"
                         className="btn btn-success"
                         onClick={this.handleAddNew}
-                        style={{ margin: "Auto", marginLeft: "24%", display: "block" }}
+                        style={{
+                            margin: "Auto",
+                            marginLeft: "30%",
+                            display: "block",
+                        }}
                     >
                         Add New Post
                     </button>
+                    <div className="card" style={{
+                        width: "28rem",
+                        margin: "10px auto",
+                        padding: "10px",
+                        background: "#b3ffff",
+                        borderRadius: "15px",
+                        border: "2px solid ",
+                    }} >
+                        <input type="text" placeholder="Title" style={stylep}/>
+                        <input type="text" placeholder="Time" style={stylep} />
+                        <input type="text" placeholder="Picture" style={stylep}/>
+                        <input type="text" placeholder="Description" style={stylep}/>
+                        <input type="text" placeholder="Content" style={stylep}/>
+                        <button className="btn btn-primary" style={stylep}>Save</button>
 
-                    {this.state.sPosts.map((posts) => {
+                    </div>
+
+
+
+                    {this.state.sPosts.map((posts , index) => {
                         return (
-                            <React.Fragment key={posts.id}>
+                            <React.Fragment key={index}>
                                 <Post
                                     id={posts.id}
                                     title={posts.title}
@@ -146,3 +190,13 @@ class Posts extends Component {
 }
 
 export default Posts;
+
+const npost = {
+    id: nId,
+    title: "Dummy " + nId,
+    date: "3 Jan 2022 | 2:10 PM",
+    content: "Dummy content" + nId,
+    comment: "sample comment" + nId,
+    like: false,
+    dislike: false,
+};
