@@ -15,8 +15,8 @@ const Formm = ({ handleSave }) => {
     const [content, setContent] = useState("");
     const [comment, setComment] = useState("");
     const [description, setDescription] = useState("");
-    const [like, setLike] = useState("");
-    const [dislike, setDislike] = useState("");
+    const [like, setLike] = useState(false);
+    const [dislike, setDislike] = useState(false);
     
 
     const handlSubmit = () => {

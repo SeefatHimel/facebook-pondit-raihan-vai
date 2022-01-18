@@ -185,6 +185,7 @@ class Posts extends Component {
                         return (
                             <React.Fragment key={index}>
                                 <Post // just pass post
+                                    post={posts}
                                     id={posts.id}
                                     title={posts.title}
                                     date={posts.date}

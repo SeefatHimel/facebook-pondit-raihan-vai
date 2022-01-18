@@ -104,6 +104,7 @@ class Post extends Component {
                                 }}
                             >
                                 <Like
+                                    post={this.props.post}
                                     id={this.props.id}
 
                                     like={this.props.like}
