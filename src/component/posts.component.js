@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import Post from "./post.component";
+import Formm from "./form.component";
+
 let nId = 6;
 
 const stylep = {
@@ -64,6 +66,7 @@ class Posts extends Component {
         ],
         idNo: 6,
         likeN: 0,
+        showForm: false,
     };
     changeLike = (id, value) => {
         const sPosts = this.state.sPosts.map((post) =>
@@ -84,21 +87,39 @@ class Posts extends Component {
     };
 
     handleAddNew = () => {
-        console.log("Post Added");
+        console.log("new ?");
+
+        const showForm = !this.state.showForm;
+        this.setState({ showForm });
+
+        // const sPosts = [...this.state.sPosts];
+        // nId++;
+        // const npost = {
+        //     id: nId,
+        //     title: "Dummy " + nId,
+        //     date: "3 Jan 2022 | 2:10 PM",
+        //     content: "Dummy content " + nId,
+        //     comment: "sample comment " + nId,
+        //     like: false,
+        //     dislike: false,
+        // };
+        // console.log(nId, npost);
+
+        // let nnpost = npost;
+        // sPosts.push(nnpost);
+        // this.setState({ sPosts });
+    };
+    handleSave = (npost) => {
         const sPosts = [...this.state.sPosts];
-        nId ++;
-        console.log(nId , npost);
-        let nnpost = npost;
+        nId++;
+
         npost.id = nId;
-        sPosts.push(nnpost);
-        //console.log(sPosts);
+        console.log(nId, npost);
 
-        // nId = this.state.idNo;
-        // const idNo = this.state.idNo + 1;
-        // this.setState({ idNo });
-
-
+        sPosts.push(npost);
         this.setState({ sPosts });
+        console.log(sPosts);
+        alert("New Post Added");
     };
 
     sendLike = (temp) => {
@@ -144,29 +165,26 @@ class Posts extends Component {
                     >
                         Add New Post
                     </button>
-                    <div className="card" style={{
-                        width: "28rem",
-                        margin: "10px auto",
-                        padding: "10px",
-                        background: "#b3ffff",
-                        borderRadius: "15px",
-                        border: "2px solid ",
-                    }} >
-                        <input type="text" placeholder="Title" style={stylep}/>
-                        <input type="text" placeholder="Time" style={stylep} />
-                        <input type="text" placeholder="Picture" style={stylep}/>
-                        <input type="text" placeholder="Description" style={stylep}/>
-                        <input type="text" placeholder="Content" style={stylep}/>
-                        <button className="btn btn-primary" style={stylep}>Save</button>
-
+                    <div
+                        className="card"
+                        style={{
+                            width: "28rem",
+                            margin: "10px auto",
+                            padding: "10px",
+                            background: "#b3ffff",
+                            borderRadius: "15px",
+                            border: "2px solid ",
+                        }}
+                    >
+                        {this.state.showForm === true ? (
+                            <Formm handleSave={this.handleSave} />
+                        ) : null}
                     </div>
 
-
-
-                    {this.state.sPosts.map((posts , index) => {
+                    {this.state.sPosts.map((posts, index) => {
                         return (
                             <React.Fragment key={index}>
-                                <Post
+                                <Post // just pass post
                                     id={posts.id}
                                     title={posts.title}
                                     date={posts.date}
@@ -191,12 +209,37 @@ class Posts extends Component {
 
 export default Posts;
 
-const npost = {
-    id: nId,
-    title: "Dummy " + nId,
-    date: "3 Jan 2022 | 2:10 PM",
-    content: "Dummy content" + nId,
-    comment: "sample comment" + nId,
-    like: false,
-    dislike: false,
-};
+{
+    /* <div
+                        className="card"
+                        style={{
+                            width: "28rem",
+                            margin: "10px auto",
+                            padding: "10px",
+                            background: "#b3ffff",
+                            borderRadius: "15px",
+                            border: "2px solid ",
+                        }}
+                    >
+                        <input type="text" placeholder="Title" style={stylep} />
+                        <input type="text" placeholder="Time" style={stylep} />
+                        <input
+                            type="text"
+                            placeholder="Picture"
+                            style={stylep}
+                        />
+                        <input
+                            type="text"
+                            placeholder="Description"
+                            style={stylep}
+                        />
+                        <input
+                            type="text"
+                            placeholder="Content"
+                            style={stylep}
+                        />
+                        <button className="btn btn-primary" style={stylep}>
+                            Save
+                        </button>
+                    </div> */
+}
